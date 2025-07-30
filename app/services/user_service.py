@@ -316,7 +316,7 @@ class UserService:
                 return role
         except IntegrityError:
             raise
-        except Exception as e:
+        except Exception:
             raise
 
     @staticmethod
@@ -364,5 +364,5 @@ class UserService:
                 return permissions
         except IntegrityError:
             raise
-        except Exception as e:
+        except Exception:
             raise

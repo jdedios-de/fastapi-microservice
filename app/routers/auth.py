@@ -61,7 +61,7 @@ async def login_for_access_token(
             )
 
         # Child Span: Save token in DB
-        with tracer.start_as_current_span("save-api-key") as save_token_db:
+        with tracer.start_as_current_span("save-api-key"):
             now = datetime.now()
             db_api_key = ApiKeysBase(
                 api_key=access_token,

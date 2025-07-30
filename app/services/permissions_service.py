@@ -2,8 +2,6 @@ from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import select
 
-from app.db import get_session
-from app.dependencies import get_db
 from app.models.users import Roles, Permissions
 from app.schemas.permissions import PermissionBase
 from sqlalchemy.exc import IntegrityError
