@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Pull rabbitmq image (optional)
+        run: docker pull rabbitmq:3-management-alpine
+
       - name: Install Poetry
         run: pip install poetry==1.8.3
 

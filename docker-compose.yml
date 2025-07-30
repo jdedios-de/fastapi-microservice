@@ -50,6 +50,8 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
+    networks:
+      app-network:
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 10s
