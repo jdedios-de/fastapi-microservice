@@ -10,8 +10,7 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from app.schemas.user_profile import UserProfileBase
 from app.schemas.user_roles import UserRole
 from app.dependencies import get_db
-from app.models.users import Roles, Permissions, RolePermissions, UserRoles, Users
-from app.models.user_profile import UserProfile
+from app.models.users import Roles, Permissions, RolePermissions, UserRoles, Users, UserProfile
 from app.schemas.role_permission import RolePermission
 from app.schemas.user import UserCreate, UserUpdate, UserCreateRolePermission
 from fastapi import Depends, HTTPException

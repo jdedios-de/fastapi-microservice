@@ -1,13 +1,13 @@
 from pydantic import EmailStr
 
-from datetime import datetime, timezone
+from datetime import timezone
 from sqlalchemy import DateTime
-from typing import Optional, List
+from typing import List,Optional
+
+from datetime import datetime, date
+from zoneinfo import ZoneInfo
 
 from sqlmodel import Field, SQLModel, Relationship
-
-from app.models.user_profile import UserProfile
-
 
 class UserRoles(SQLModel, table=True):
     created_at: Optional[datetime] = Field(
@@ -26,7 +26,25 @@ class RolePermissions(SQLModel, table=True):
     role_id: int = Field(foreign_key="roles.id", primary_key=True, nullable=False)
     permission_id: int = Field(foreign_key="permissions.id", primary_key=True, nullable=False)
 
-
+class UserProfile(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    first_name: str = Field(nullable=False, index=True)
+    last_name: str = Field(nullable=False)
+    sex: Optional[str] = None
+    phone_number: Optional[str] = None
+    address: Optional[str] = None
+    birth_date: date
+    bio: Optional[str] = None
+    description: Optional[str] = None
+    created_at: Optional[datetime] = Field(
+        default_factory=lambda: datetime.now(ZoneInfo("UTC"))
+    )
+    updated_at: Optional[datetime] = Field(
+        default_factory=lambda: datetime.now(ZoneInfo("UTC")),
+        sa_column_kwargs={"onupdate": lambda: datetime.now(ZoneInfo("UTC"))},
+    )
+    user_id: int = Field(foreign_key="users.id", nullable=False, index=True)
+    user: Optional["Users"] = Relationship(back_populates="profile")
 
 class Users(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
