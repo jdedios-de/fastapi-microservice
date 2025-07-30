@@ -117,7 +117,7 @@ jobs:
 
       - name: Run Docker Compose
         run: |
-          docker-compose up -d
+          docker compose up -d
           sleep 10 # Wait for services to be healthy
-          docker-compose ps
-          docker-compose down
+          docker compose ps
+          docker compose down
