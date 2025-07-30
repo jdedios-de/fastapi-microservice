@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "fastapi-microservice"
+version = "0.1.0"
+description = "A FastAPI microservice with observability, caching, and events"
+authors = ["Jerome de Dios <jeromededios.de@proton.me>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.116.1"
+uvicorn = "^0.35.0"
+sqlmodel = "^0.0.24"
+pydantic = "2.11.7"
+passlib = "^1.7"
+aio-pika = "^9.5.5"
+redis = "^6.2.0"
+opentelemetry-api = "^1.36.0"
+opentelemetry-sdk = "^1.36.0"
+opentelemetry-exporter-otlp = "^1.36.0"
+opentelemetry-instrumentation-fastapi = "^0.57b0"
+opentelemetry-exporter-otlp-proto-grpc = "^1.36.0"
+pydantic-settings = "^2.0.0"
+email-validator = "^2.1.0"
+loguru = "^0.7.3"
+pyjwt = "^2.10.1"
+sqlalchemy-stubs = "^0.4"
+python-multipart = "^0.0.20"
+asyncpg = "^0.30.0"
+python-json-logger  = "^3.3.0"
+tenacity = "^9.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0"
+pytest-asyncio = "^0.20"
+httpx = "^0.24"
+flake8 = "^6.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
