@@ -36,10 +36,10 @@ async def login_for_access_token(
         form_data: Annotated[OAuth2PasswordRequestForm,
         Depends()], session: AsyncSession = Depends(get_session), cache=Depends(get_cache),
                     tracer=Depends(get_tracer)) -> Token:
-    with tracer.start_as_current_span("login-for-access-token") as parent_span:
+    with tracer.start_as_current_span("login-for-access-token"):
 
         # Child Span: Authenticate user
-        with tracer.start_as_current_span("authenticate-user") as span_auth:
+        with tracer.start_as_current_span("authenticate-user"):
             user = await authenticate_user(form_data.username, form_data.password, session, cache, tracer)
 
         if not user:
@@ -50,11 +50,11 @@ async def login_for_access_token(
             )
 
         # Child Span: Permission check
-        with tracer.start_as_current_span("check-user-permission") as span_check_permission:
+        with tracer.start_as_current_span("check-user-permission"):
             await is_allowed_to_generate_token(user, session, cache, tracer)
 
         # Child Span: Create access token
-        with tracer.start_as_current_span("create-access-token") as create_token:
+        with tracer.start_as_current_span("create-access-token"):
             access_token_expires = timedelta(minutes=int(get_token_expire_minutes()))
             access_token = create_access_token(
                 data={"sub": user.username}, expires_delta=access_token_expires

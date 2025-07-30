@@ -1,7 +1,7 @@
 from pydantic import EmailStr
 
 from datetime import datetime, timezone
-from sqlalchemy import DateTime, ForeignKey
+from sqlalchemy import DateTime
 from typing import Optional, List
 
 from sqlmodel import Field, SQLModel, Relationship

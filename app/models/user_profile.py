@@ -4,6 +4,9 @@ from zoneinfo import ZoneInfo
 
 from sqlmodel import Field, SQLModel, Relationship
 
+from app.models.users import Users
+
+
 class UserProfile(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     first_name: str = Field(nullable=False, index=True)

@@ -45,7 +45,7 @@ class AuthenticateService:
             with db as session:
                 statement = select(APIKeys).where(
                     APIKeys.api_key == api_key).where(
-                    APIKeys.is_active == True).where(
+                    APIKeys.is_active).where(
                     APIKeys.expires_at < datetime.now())
 
                 results = await session.exec(statement).first()
@@ -68,9 +68,9 @@ class AuthenticateService:
             with db as session:
                 statement = select(APIKeys).join(Users).where(
                     APIKeys.api_key == api_key.api_key).where(
-                    APIKeys.is_active == True).where(
+                    APIKeys.is_active).where(
                     APIKeys.expires_at > datetime.now()).where(
-                    Users.is_active == True)
+                    Users.is_active)
 
                 results = await session.exec(statement).first()
 
