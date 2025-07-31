@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
-        with::
+        with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
